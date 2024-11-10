@@ -1,0 +1,230 @@
+.avatar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f3f4f6;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.explosion-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.avatar-overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 12rem;
+  height: 12rem;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.upload-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #9ca3af;
+}
+
+.upload-text {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.file-input {
+  display: none;
+}
+
+.avatar-piece {
+  position: absolute;
+  background-repeat: no-repeat;
+  transition: transform 0.05s linear;
+  pointer-events: none;
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.avatar-wrapper {
+  width: 12rem;
+  height: 12rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.crack-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+}
+
+.crack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.crack::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
+/* Glass crack patterns */
+.crack-1::before { 
+  clip-path: polygon(50% 0%, 49% 50%, 50% 100%, 51% 50%);
+}
+
+.crack-2::before { 
+  clip-path: polygon(0% 50%, 50% 49%, 100% 50%, 50% 51%);
+}
+
+.crack-3::before { 
+  clip-path: polygon(20% 0%, 50% 50%, 80% 100%, 51% 50%);
+}
+
+.crack-4::before { 
+  clip-path: polygon(80% 0%, 50% 50%, 20% 100%, 49% 50%);
+}
+
+.crack-5::before { 
+  clip-path: polygon(0% 20%, 50% 50%, 100% 80%, 50% 51%);
+}
+
+.crack-6::before { 
+  clip-path: polygon(0% 80%, 50% 50%, 100% 20%, 50% 49%);
+}
+
+.avatar-wrapper.clicked-1 .crack-1 { opacity: 1; }
+.avatar-wrapper.clicked-2 .crack-2 { opacity: 1; }
+.avatar-wrapper.clicked-3 .crack-3 { opacity: 1; }
+.avatar-wrapper.clicked-4 .crack-4 { opacity: 1; }
+.avatar-wrapper.clicked-5 .crack-5 { opacity: 1; }
+.avatar-wrapper.clicked-6 .crack-6 { opacity: 1; }
+
+@keyframes glassShatter {
+  0% { opacity: 0; transform: scale(0.98) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.02) rotate(1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.crack.visible {
+  animation: glassShatter 0.3s ease forwards;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* "Grave Them" Button Style */
+.grave-them-button {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #6b7280;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease;
+  z-index: 10; /* Ensure it's on top */
+}
+
+.grave-them-button:hover {
+  background-color: #4b5563;
+}
+
+
+.mud-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #6b7280;
+  animation: pourMud 3s forwards;
+}
+
+@keyframes pourMud {
+  0% {
+      height: 0;
+      top: 0;
+  }
+  100% {
+      height: 100%;
+      top: 0;
+  }
+}
+
+.hidden-images {
+  display: none;
+}
